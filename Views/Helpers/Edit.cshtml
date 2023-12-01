@@ -1,0 +1,66 @@
+﻿@model tyuiu.oop.ZhukovDA.IsakovAV.StudentHelper.DataModels.Helper
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Helper</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Subject" class="control-label"></label>
+                <input asp-for="Subject" class="form-control" />
+                <span asp-validation-for="Subject" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Duration" class="control-label"></label>
+                <input asp-for="Duration" class="form-control" />
+                <span asp-validation-for="Duration" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <button type="button" id="setDateButton" class="btn btn-secondary">Set Date with Days Ahead</button>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+
+        var originalDuration = document.getElementById("Duration").value;
+
+        document.getElementById("setDateButton").addEventListener("click", function () {
+
+            var daysAhead = prompt("Enter number of days ahead:", "");
+
+            if (daysAhead !== null && daysAhead !== "") {
+
+                document.getElementById("Duration").value = daysAhead;
+
+            }
+        });
+
+        document.querySelector("form").addEventListener("submit", function () {
+            document.getElementById("Duration").value = originalDuration;
+        });
+    </script>
+}
