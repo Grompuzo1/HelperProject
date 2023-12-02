@@ -8,7 +8,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<MyDBContext>(options =>
 {
-    options.UseSqlite(@"Data source=C:\tempa\StudentHelper.db");
+    options.UseSqlite(@"Data source=C:\temp\StudentHelper.db");
 });
 
 var app = builder.Build();
